@@ -63,27 +63,32 @@ h1 {
 	text-align: center;
 	font-size: 3em;
 	font-family: Elephant, serif;
-	color: #00008B;
+	color: white;
 	}
 /*Change font size of header 2 to 2em*/
 h2 {
 	font-size: 2em;
+	color: white;
 	}
 /*Change font size of header 3 to 2em*/
 h3 {
 	font-size: 1.75em;
+	color: white;
 	}
 /*Set font size of the paragraphs to 1.5em*/
 p {
-	font-size: 1.5em
+	font-size: 1.5em;
+	color: white;
 }
 /*Adjust the pre formated text to also be font size 1.5em*/
 pre {
-	font-size: 1.5em
+	font-size: 1.5em;
+	color: white;
 }
 /*Make lists have a smaller font size of 1.25em*/
 ul li {
 	font-size: 1.25em;
+	color: white;
 }
 
 	
