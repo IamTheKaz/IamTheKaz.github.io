@@ -26,7 +26,7 @@
   float: left;
   display: block;
   color: #f2f2f2;
-  text-align: right;
+  text-align: left;
   padding: 14px 16px;
   text-decoration: none;
 }
@@ -44,6 +44,7 @@
 
 body {
     background-image: url("images/index_background.jpg");
+    background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
@@ -77,16 +78,23 @@ h3 {
 	}
 /*Set font size of the paragraphs to 1.5em*/
 p {
-	font-size: 1.5em;
-    color: #f2f2f2;
+    font-size: 1.5em;
+    color: white;
 }
 /*Adjust the pre formated text to also be font size 1.5em*/
 pre {
 	font-size: 1.5em;
-    color: #f2f2f2;
+    color: limegreen;
+}
+a {
+    font-size: 1.5em;
 }
 /*Make lists have a smaller font size of 1.25em*/
 ul li {
 	font-size: 1.25em;
     color: #f2f2f2;
+}
+td {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 10px 40px 20px 30px;
 }
