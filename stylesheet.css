@@ -105,5 +105,6 @@ ul li {
     color: black;
 }
 td {
+    vertical-align: top;
     padding: 0px 40px 10px 30px;
 }
