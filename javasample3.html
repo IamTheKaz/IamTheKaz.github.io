@@ -2,9 +2,108 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Final Java project</title>
 </head>
-<body>
+<body style ='background-image: url("images/Code_background.jpg")'><!--Tells the html file to look for its stylesheet in the static folder-->
+<link rel="stylesheet" type="text/css" href="stylesheet.css">
+
+<div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="Code.html">Code Samples</a>
+    <a href="Web.html">Website Samples</a>
+</div>
+
+<div class="main">
+    <p><h1>This is the main function in a multifunction Java program that reads .txt files and changes data</h1></p>
+    <br>
+    <p>Additional files available upon request. <a href="mailto:kazwolff85@gmail.com?subject=Java file request" style="font-size: 1.75em">Click here</a> to email me about it.</p>
+    <pre>// Kassandra Ring ***** CMIS 242/6382 ***** 10/14/2022
+
+/*
+ *Program is a user interface which is menu driven through console commands
+
+Option 1: load Media files from a given directory (user supplies directory)
+Option 2: find a media object for a specific title value (user supplies title and should
+display to user the media information once it finds it - should find all media with that
+title)
+Option 3: rent a media object based on its id value (user supplies id and should
+display rental fee value to the user)
+Option 0: Exit
+
+ */
+
+package Final;
+
+
+import java.util.Scanner;
+
+public class MediaRentalSystem {
+
+
+	public static void main(String[] args) {
+
+		// Variables
+		Manager mgt = new Manager();
+        int menuChoice = 1;
+        String directory;
+    	String searchInput;
+
+        //Scanners to read different input types
+        Scanner input = new Scanner(System.in);
+        Scanner string = new Scanner(System.in);
+
+        //Loop for menu
+        while (menuChoice >= 0 && menuChoice <= 3 ){
+
+        	System.out.print("\nWelcome to Nothing is Real Media Rental System\n");
+        	System.out.print("1: Load Media objects...\n");
+        	System.out.print("2: Find Media object... \n");
+        	System.out.print("3: Rent Media object... \n");
+        	System.out.print("0: Quit\n" );
+        	System.out.println("\nEnter your selection: ");
+
+        	//Menu choice input
+        	menuChoice = input.nextInt();
+
+
+        	//What to do with menu choice
+        	switch (menuChoice) {
+
+        	//exit
+        		case 0:
+        			System.out.println("Thank you for using a Nothing Is Real product!\n");
+        			System.exit(0);
+        	//load files to be searched
+        		case 1:
+
+        			System.out.print("\nEnter path (directory) where to load from: \n");
+
+        			directory = string.nextLine();
+        			mgt.loadFiles(directory);
+        		break;
+
+        		//Search by title
+        		case 2:
+
+        			System.out.print("\nEnter the title: \n");
+        			searchInput = string.nextLine();
+        			mgt.searchFiles(searchInput);
+        		break;
+
+        	//Rent media
+        		case 3:
+
+        			System.out.print("\nEnter ID of media: \n");
+        			int rentalID = input.nextInt();
+        			mgt.rentMedia(rentalID);
+        		break;
+
+        	}
+        }
+	}
+}
+</pre>
+</div>
 
 </body>
 </html>
