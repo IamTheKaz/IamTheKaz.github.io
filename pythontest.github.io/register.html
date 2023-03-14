@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>Please register to log in</title>
+</head>
+<body>
+<!--Tells the html file to look for its stylesheet in the static folder-->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheet.css') }}">
+
+<h1>Register to Log In</h1>
+{% with error = get_flashed_messages() %}
+  {% if error != None %}<!--Accepts error value from register function and prints it if there is an error-->
+         <p>{{ error[0] }}
+      {% endif %}
+  {% endwith %}
+</p>
+<p>Password must have at least 1 uppercase character, 1 lowercase character, 1 number and 1 special character</p><!--Conditions for password-->
+<form action="" method="post"><!--Make a form that asks for the user's name and preferred password and process the results in register function-->
+    <label for="username">Username</label><!--Label for username input-->
+    <input type="text" name="username" value="{{ request.form.username }}"><!--Input box that will be translated to username for register function-->
+    <label for="password">Password</label><!--Label for password input-->
+    <input type="password" name="password"><!--Input box that will be translated to password for register function-->
+    <input class="btn btn-default" type="submit" value="Submit"><!--Sends information to register function-->
+
+</form>
+
+</body>
+</html>

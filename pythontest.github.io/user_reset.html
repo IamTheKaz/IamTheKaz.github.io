@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>Reset Password</title>
+</head>
+<body>
+<!--Tells the html file to look for its stylesheet in the static folder-->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheet.css') }}">
+
+<h1>Reset Password</h1>
+{% with error = get_flashed_messages() %}
+  {% if error %}<!--Accepts error value from register function and prints it if there is an error-->
+         <p>{{ error[0] }}
+      {% endif %}
+  {% endwith %}
+</p>
+<p>Password must have at least 1 uppercase character, 1 lowercase character, 1 number and 1 special character</p><!--Conditions for password-->
+<form action="" method="post"><!--Make a form that asks for the user's new password and process the results in user_reset function-->
+    <label for="password">New Password</label><!--Label for password input-->
+    <input type="password" name="password"><!--Input box that will be translated to password for user_reset function-->
+    <input class="btn btn-default" type="submit" value="Submit"><!--Sends information to user_reset function-->
+
+</form>
+<p style="text-align:center;"><a href="{{url_for('home')}}">Go back home</a></p>
+</body>
+</html>

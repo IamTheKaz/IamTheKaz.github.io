@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Nothing is Real</title><!--I figured that having my name and the lab number as the title was fitting-->
+    </head>
+
+<body>
+<!--Tells the html file to look for its stylesheet in the static folder-->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheet.css') }}">
+
+<div class="navbar">
+    <a href="#home"></a>
+    <a href="prices"
+</div>
+<h1>Hello {{ username }} and Welcome to the Home of Nothing Is Real Web and Software Design!</h1>
+
+<!--Create a table, requirement-->
+<table>
+    <tr><!--Row 1 requirement-->
+        <td><!--Column 1 requirement--><h2>My name is Kassandra (Wolff) Ring</h2></td><!--Column 2 requirement--><td><h2>Current date and time is: </h2></td><!--Column 3 requirement--><td><h2>{{ date}}</h2></td>
+    </tr><!--End row 1-->
+    <tr><!--Row 2 requirement-->
+        <td><img src="{{url_for('static', filename='marraige.jpg')}}"></td><!--Image 1, in column 1 of row 2 for requirement-->
+        <td><p>This site is a working record and example of what I am capable of from my ongoing education at University of Maryland Global Campus. This is the best picture of me I could find. It is a picture of my husband and I toasting to our marriage on our wedding night.
+                This site is starting to be a bit more interesting as you have learned there is now a password protection feature and pictures added. You will also notice that the text is more organized. I used tables to do that which is how many of the online page builder companies like godaddy.com do it. I think I can now figure out how to make my code run, I think I will stick to only the password feature for now. That will come in time and this block of text will be rewritten. For now, you can see example's of websites I have worked on
+and read some of my code that I am particularly proud of.
+            </p></td><!--Column 2 of row 2-->
+        <td><a href="{{url_for('user_reset')}}">Click here to reset your password</a></td><!--Column 3 of row 2-->
+    </tr><!--End row 2-->
+    <tr><!--Row 3 requirement-->
+    <td><h3>Right now I can show you two categories:</h3></td><!--Column 1 of row 3--><td></td><!--Column 2 of row 3--><td><!--Column 3 of row 3--></td>
+    </tr><!--End of row 3-->
+    <tr><!--Row 4 requirement-->
+        <td><h3>Code Examples:</h3></td><!--Column 1 of row 4--><td><h3>Websites I have worked on:</h3></td><!--Column 2 of row 4--><td></td><!--Column 3 of row 4-->
+    </tr><!--End of row 4-->
+    <tr><!--The following rows are extra. However, they complete the page so they were included-->
+        <td><a href="age.html">Google Age Calculator</a></td>
+        <td><a href="https://astroaccess.org">Astro Access</a></td><td></td>
+    </tr>
+    <tr>
+        <td><a href="vote.html">Voter Registration</a></td>
+        <td><a href="http://www.lifesanswers.care">Life's Answers</a></td><td></td>
+    </tr>
+    <tr>
+        <td><a href="state.html">State Statistics Generator</a></td>
+        <td><a href="https://sites.google.com/view/wolffsites/home">Wolff Sites</a></td><td></td>
+    </tr>
+</table><!--End of table-->
+
+</body>
+</html>
