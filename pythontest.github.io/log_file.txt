@@ -1,4 +1,0 @@
-
-2023-03-03 12:08:59,238 - ring_kassandra_lab8 - WARNING - User1 failed password validation. IP Address: 127.0.0.1
-2023-03-03 12:10:45,960 - ring_kassandra_lab8 - WARNING - User1 failed password validation. IP Address: 127.0.0.1
-2023-03-03 12:11:37,606 - ring_kassandra_lab8 - WARNING - User1 failed password validation. IP Address: 127.0.0.1
