@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Java Overwriting</title>
+</head>
+<body style ='background-image: url("images/Code_background.jpg")'><!--Tells the html file to look for its stylesheet in the static folder-->
+<link rel="stylesheet" type="text/css" href="stylesheet.css">
+
+<div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="Code.html">Code Samples</a>
+    <a href="Web.html">Website Samples</a>
+</div>
+
+<div class="main">
+    <p><h1>This is the main function for a multifunction program that demonstrates overwriting in Java</h1></p>
+    <pre>// Kassandra Ring ***** CMIS 242/6382 ***** 9/4/2022
+//Program asks for what kind of snack wanted and then displays price and ID based on input
+
+package project1;
+
+import java.util.Scanner;
+
+public class OrderSystem {
+
+
+	//Main method to gather input
+	public static void main(String[] args) {
+
+		boolean yesOrNo = true;
+		String size = "S";
+
+		String extraSnack = "";
+		Scanner Nums = new Scanner(System.in);
+		Scanner Chars = new Scanner(System.in);
+
+		//Loop so that more than one selection may be made
+		while (yesOrNo) {
+			//Menu
+			System.out.println("Hello and welcome to the Nothing is Real Snack Order System!\n");
+			System.out.println("Press 1 to order");
+			System.out.println("Or, press any other number to quit");
+
+			//Ask user for input
+			System.out.print("Enter your menu choice here: ");
+
+
+			int menuChoice = Nums.nextInt();
+
+			//Exit option
+			if (menuChoice != 1) {
+				System.out.println("Thank you for using the program. Goodbye!\n");
+				yesOrNo = false;
+				break;
+			}
+
+
+			//Prompt to ask for type of snack
+			System.out.println("Do you want Fruit Snack (1) or Salty Snack (2):");
+
+
+			int snackType = Nums.nextInt();
+
+			//Makes sure the input is only a 1 or 2
+			while (snackType != 1 && snackType != 2) {
+				System.out.println("Please enter a 1 or a two");
+
+				snackType = Nums.nextInt();
+			}
+
+			//Prompt for size
+			System.out.println("\nDo you want: Small (S), Medium (M), or Large(L): ");
+			size = Chars.next();
+
+
+			//Based on variable SnackType prompt user for extras then send to either snack, if no extras, or FruitSnack if fruit and SaltySnack if salty
+			 if (size.equalsIgnoreCase("s") || size.equalsIgnoreCase("m") || size.equalsIgnoreCase("l")){
+
+				 //nested if for SnackType Fruity, starts with prompt to user about extras
+				if (snackType == 1) {
+				System.out.println("Is this snack a citrus fruit?  true/false:");
+
+					extraSnack = Chars.next();
+
+					//If there are extras call the FruitSnack version of DisplaySnack
+					if (extraSnack.equalsIgnoreCase("true")) {
+
+						//Create new version of FruitySnack so that its version of DisplaySnack can be run
+						FruitSnack fS1 = new FruitSnack(snackType, size);
+						fS1.DisplaySnack(snackType, size);
+
+						//Ask user if they want to make another order
+						System.out.println("\n Would you like to make another order? Enter 1 to order again: ");
+
+
+
+						menuChoice = Nums.nextInt();
+						//Quits program if user inputs anything other than 1
+						if (menuChoice != 1)
+						{
+							System.out.println("\nThank you for your order!");
+							System.exit(0);
+						}
+					}
+
+					//If there are no extras, call the Snack version of DisplaySnack
+					if (extraSnack.equalsIgnoreCase("false")) {
+
+						//Create new version of Snack so that its version of DisplaySnack can be run
+						Snack snack = new Snack(snackType, size);
+						snack.DisplaySnack(snackType, size);
+
+						//Ask user if they want to make another order
+						System.out.println("\n Would you like to make another order? Enter 1 to order again: ");
+
+
+
+						menuChoice = Nums.nextInt();
+						//Quits program if user inputs anything other than 1
+						if (menuChoice != 1)
+						{
+							System.out.println("\nThank you for your order!");
+							System.exit(0);
+						}
+					}
+				}
+
+				//nested if for SnackType Salty, starts with prompt to user about extras
+				if (snackType == 2) {
+					System.out.println("Is this snack a nutty snack?  true/false: ");
+
+					extraSnack = Chars.next();
+
+					//If there are extras call the SaltySnack version of DisplaySnack
+					if (extraSnack.equalsIgnoreCase("true")) {
+
+						//Create new version of SaltySnack so that its version of DisplaySnack can be run
+						SaltySnack Ss1 = new SaltySnack(snackType, size);
+						Ss1.DisplaySnack(snackType, size);
+
+						//Ask user if they want to make another order
+						System.out.println("\n Would you like to make another order? Enter 1 to order again: ");
+
+
+						menuChoice = Nums.nextInt();
+						//Quits program if user inputs anything other than 1
+						if (menuChoice != 1)
+						{
+							System.out.println("\nThank you for your order!");
+							System.exit(0);
+						}
+					}
+
+					//If there are no extras, call the Snack version of DisplaySnack
+					if (extraSnack.equalsIgnoreCase("false")) {
+
+						//Create new version of Snack so that its version of DisplaySnack can be run
+						Snack snack2 = new Snack(snackType, size);
+						snack2.DisplaySnack(snackType, size);
+
+						//Ask user if they want to make another order
+						System.out.println("\n Would you like to make another order? Enter 1 to order again: ");
+
+						menuChoice = Nums.nextInt();
+						//Quits program if user inputs anything other than 1
+						if (menuChoice != 1)
+						{
+							System.out.println("\nThank you for your order!");
+							System.exit(0);
+						}
+					}
+				}
+			}
+
+
+		}
+
+
+
+	}
+}
+    </pre>
+</div>
+</body>
+</html>

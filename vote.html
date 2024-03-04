@@ -1,0 +1,160 @@
+<!--This page is simple a cut and paste of my code from lab 1. I chose this one because it was really fun and simple-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Code Sample: Voter Registration</title>
+</head>
+<body style ='background-image: url("images/Code_background.jpg")'><!--Tells the html file to look for its stylesheet in the static folder-->
+<link rel="stylesheet" type="text/css" href="stylesheet.css">
+
+<div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="Code.html">Code Samples</a>
+    <a href="Web.html">Website Samples</a>
+</div>
+
+<div class="main">
+<h1>This is the code I wrote for a project in SDEV 300:</h1>
+<br>
+<p>
+    <pre><!--Use of <pre> allows me to keep all of my tabs and newlines just as they are in the .py file-->
+  """ Kassandra Ring 3047272***** 1/17/2023 ***** SDEV 300 """
+#Program asks user for voter registration information and prints it
+
+#Import sys module for exits
+import sys
+
+#Establish variables
+
+state_list = ["al", "ak", "az", "ar", "ca", "co", "ct", \
+"de", "dc", "fl", "ga", "hi", "id", "il", "in", "ia", "ks",\
+ "ky", "la", "me", "md", "mi", "mn", "ms", "mo", "mt", "ne",\
+ "nv", "nh", "nj", "nm", "ny", "nc", "nd", "oh", "ok", "or",\
+ "pa", "ri", "sc", "sd", "tn", "tx", "ut", "va", "wa", "wv", "wi", "wy"]
+
+
+def user_age():
+    """Function to determine age eligibility"""
+
+#Prompt user for age, ask again if input is < 18 or > 100
+    valid = 0
+    while valid == 0:
+        age = input("How old are you? \n")
+        if age.isnumeric() or age.lower() == "exit":
+            if age.lower() == "exit":
+                sys.exit ("Thank you for using a Nothing is Real product. Good Bye!")
+            elif int(age) < 18 and int(age) > 0:
+                sys.exit ("Thank you for using a Nothing is Real product, however you \
+must be 18 or older to register to vote. Good Bye!")
+            elif int(age) > 120 or int(age) < 0:
+                print (("Are you really"),(age),('''years old? If so please email us at:
+Registration@NiR.org. Otherwise please re-enter your age below.\n'''))
+                valid = 0
+            elif int(age) >= 18 or int(age) <= 120:
+                return age
+        else:
+            print ((age), ("is not a number please enter a number."))
+
+def user_citizen():
+    """Function to determine citizenship eligibility"""
+
+#Prompt user for citizenship status if input does not equal yes or exit, ask again
+    valid = 1
+    while valid == 1:
+        citizen = input("Are you a U.S. Citizen? (Yes/No)\n")
+        if citizen.lower() == "no":
+            print ('''You must be a U.S. citizen to register to vote.
+Please use our Nothing is Real Citizenship application
+located on our website www.NiR.org.\n''')
+            sys.exit("Thank you for using a Nothing is Real product. Good Bye!")
+        elif citizen.lower() == "exit":
+            sys.exit ("Thank you for using a Nothing is Real product. Good Bye!")
+        elif citizen.lower() == "yes":
+            return citizen
+        else:
+            print ("Please type either yes or no.\n")
+            valid = 1
+
+def user_state():
+    """Function to determine state eligibility"""
+
+#Prompt user for state of residency if input does not match list or equal exit, ask again
+    valid = 2
+    while valid == 2:
+        state = input("What is the two letter abreviation for the state do you live in?\n")
+        if state.lower() in state_list:
+            return state
+        if state.lower() == "exit":
+            sys.exit ("Thank you for using a Nothing is Real product. Good Bye!")
+        else:
+            print ('''\nPlease enter a valid state abbreviation.
+*For example Texas should be written TX.\n''')
+            valid = 2
+
+def user_zipcode():
+    """Function to determine zipcode eligibility"""
+
+#Prompt user for zipcode if input is not 5 numbers long or equal exit, ask again
+    valid = 3
+    while valid == 3:
+        zipcode = input("What is your zipcode? Be sure to enter any leading zeros.\n")
+        if len(zipcode) == 5 and zipcode.isnumeric():
+            return zipcode
+        if zipcode.lower() == "exit":
+            sys.exit ("Thank you for using a Nothing is Real product. Good Bye!")
+        else:
+            print ("\nPlease enter a valid 5 digit zipcode, including leading zeros.\n")
+            valid = 3
+
+def main():
+    """ Main function for program"""
+
+#Welcome message and instructions
+    print ('''Welcome to Nothing is Real's Voter Registration
+
+If you would like to quit, type exit at any time.
+
+*Note: If your name is "exit", we appolize. Please email your information to:
+Registration@NiR.org''')
+
+#Prompt user for first and last name
+    first_name = input("\nWhat is your first name? \n")
+    if first_name.lower() == "exit":
+        sys.exit("Thank you for using a Nothing is Real product. Good Bye!")
+    last_name = input("What is your last name? \n")
+    if last_name.lower() == "exit":
+        sys.exit ("Thank you for using a Nothing is Real product. Good Bye!")
+
+#Calls functions and assings their results to variables for output
+    age = user_age()
+    citizen = user_citizen()
+    state = user_state()
+    zipcode = user_zipcode()
+
+#Display user inputs. Program closes when user hits enter
+    print ('''\nThank you for using a Nothing is Real product to register to vote.
+Below is the information we have gathered:''')
+
+    print (("\nName (first last):"), (first_name.upper()), (last_name.upper()), \
+    ("\nAge:"), (int (age)),\
+    ("\nU.S. Citizen:"), (citizen.upper()), \
+    ("\nState:"), (state.upper()), \
+    ("\nZipcode:"), (zipcode))
+
+    print ('''\nOnce again, thank you for using a Nothing is Real product.
+You should recieve your voter registration card in 2-3 weeks. \n
+Press enter to exit''')
+
+#Calls main function
+main()
+
+#Empty input variable so that the information stays on the screen until the user hits enter
+user_exit = input("")
+</pre>
+</p>
+<br>
+<br>
+
+</div>
+</body>
+</html>

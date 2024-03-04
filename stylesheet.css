@@ -1,0 +1,117 @@
+
+.dropdown {
+  display: inline-block;
+  position: relative;
+}
+.dropdown-options {
+  display: none;
+  position: absolute;
+  overflow: auto;
+}
+
+.dropdown:hover .dropdown-options {
+  display: block;
+}
+/* The navigation bar */
+.navbar {
+  overflow: hidden;
+  background-color: #7393B3;
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 100%; /* Full width */
+}
+
+/* Links inside the navbar */
+.navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: left;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change background on mouse-over */
+.navbar a:hover {
+  background: #ddd;
+  color: #0047AB;
+}
+
+/* Main content */
+.main {
+  margin-top: 60px; /* Add a top margin to avoid content overlay */
+}
+
+
+body {
+    background-image: url("images/index_background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 100%;
+}
+
+@media (min-width: 1080px) {
+  body {
+    width: 100%;
+  }
+
+.web{
+    background-image: url("images/Web_background.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.menu .list {
+        max-height: 0;     /*  height at the start            */
+        overflow: hidden;  /*  required to hide li elements   */
+        transition: 1s;    /*  works both ways                */
+      }
+
+.menu:hover .list {
+        max-height: 600px; /*  max height when expanded  */
+      }
+
+/*Change header 1 to align the text center,
+set the font size to 3em, the font family to Elephant,
+and per teacher's request the font color to purple
+ */
+h1 {
+	text-align: center;
+	font-size: 3em;
+	font-family: Elephant, serif;
+	color: #00008B;
+	}
+/*Change font size of header 2 to 2em*/
+h2 {
+	font-size: 2em;
+    color: #f2f2f2;
+	}
+/*Change font size of header 3 to 2em*/
+h3 {
+	font-size: 1.75em;
+    color: #f2f2f2;
+	}
+/*Set font size of the paragraphs to 1.5em*/
+p {
+    font-size: 1.5em;
+    color: white;
+}
+/*Adjust the pre formated text to also be font size 1.5em*/
+pre {
+	font-size: 1.5em;
+    color: limegreen;
+}
+
+a {
+    font-size: 1.25em;
+}
+/*Make lists have a smaller font size of 1.25em*/
+ul li {
+    list-style: none;
+	font-size: 1.25em;
+    color: black;
+}
+td {
+    vertical-align: top;
+    padding: 0px 40px 10px 30px;
+}

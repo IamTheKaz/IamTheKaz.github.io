@@ -1,0 +1,211 @@
+<!--This page is simple a cut and paste of my code from lab 3. I chose this one because it was my first %100 grade in a programming class-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Code sample: State statistics</title>
+</head>
+<body style ='background-image: url("images/Code_background.jpg")'>
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css">
+<div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="Code.html">Code Samples</a>
+    <a href="Web.html">Website Samples</a>
+</div>
+
+<div class="main">
+<h1>This is the code I wrote for a project in SDEV 300:</h1>
+<br>
+<p>
+    <pre><!--Use of <pre> allows me to keep all of my tabs and newlines just as they are in the .py file-->
+    """ Kassandra Ring 3047272***** 1/28/2023 ***** SDEV 300 ""
+#Program asks user for menu selection to perform various functions using data structures
+#There are three typeas of data structures available lists, tuples, and dictionaries
+#I chose nested dictionaries because it made it easy to break down the state name and its
+#Populations into lists.
+
+from operator import itemgetter #For search and gathering graph data
+import sys #For exit
+import matplotlib.pyplot as plt #For images and plots
+
+
+#Dictionary with all of the information
+state_info = {
+        'alabama' :
+        {'Capital' : 'Montgomery', 'Population' : 5074296, 'Flower' : 'Camellia'},
+        'alaska' :
+        {'Capital' : 'Juneau' , 'Population' : 733583, 'Flower' : 'Alpine Forget-me-not'},
+        'arizona' :
+        {'Capital' : 'Phoenix' , 'Population' : 7359197, 'Flower' : 'Saguaro Cactus Blossom'},
+        'arkansas' :
+        {'Capital' : 'Little Rock' , 'Population' : 3045637, 'Flower' :'Apple Blossom'},
+        'colorado' :
+        {'Capital' : 'Denver' , 'Population' :  5839926, 'Flower' : 'Rocky Mountain Columbine'},
+        'california' :
+        {'Capital' : 'Sacramento' , 'Population' : 39029342, 'Flower' : 'California Poppy'},
+        'connecticut' :
+        {'Capital' : 'Hartford' , 'Population' : 3626205, 'Flower' : 'Mountain Laurel'}
+        }<
+
+#Function to display all data in state_info
+def display():
+    '''Function display's all information in dictionary state_info'''
+
+    #Loop to collect and display each state one by one
+    for name, stats in sorted(state_info.items()):
+        flower = plt.imread(f"images/{name}.jpg")
+        print(f'\nName: {name}')
+        print(('Capital: '), (stats['Capital']))
+        print(('Population: '), (stats['Population']))
+        print(('Flower:'), (stats['Flower']))
+        print((plt.imshow(flower), (plt.show(block=True))))
+
+#Function to search for a specific state
+def search():
+    '''Function to search for a specific state'''
+    #Loop to check user input
+    while True:
+        user_search = input("Enter state you wish to view:\n")
+        if user_search.lower() not in state_info:
+            print("Not a valid state")
+
+        else:
+            break
+
+    #Loop to display state selected only
+    for name, stats in state_info.items():
+        if user_search.lower() == name:
+            flower = plt.imread(f"images/{name}.jpg")
+            print(f'\nName: {name}')
+            print(('Capital: '), (stats['Capital']))
+            print(('Population: '), (stats['Population']))
+            print(('Flower:'), (stats['Flower']))
+            print((plt.imshow(flower), (plt.show(block=True))))
+
+#Function to sort out the top 5 populations and display them as a bar graph
+def graph():
+    '''Function to graph top 5 populations'''
+    #Empty lists to be filled
+    state_list = []
+    population_list = []
+
+    #Loop to fill above lists
+    for name, stats in state_info.items():
+        #Fills state_list with the names of the states in state_info
+        state_list.append(name)
+        #Fills population_list with coresponding populations in state_info
+        population_list.append(stats['Population'])
+
+    #Puts the two now full lists into an empty dictionary established globally
+    state_pops = dict(zip(state_list, population_list))
+
+    #Takes the top five populations and their names
+    #and puts them into new dictionary called top_pops
+    top_pops = dict(sorted(state_pops.items(),
+                            key = itemgetter(1), reverse=True)[:5])
+
+    #Variables and labels to make the bar graph
+    states = list(top_pops.keys())
+    populations = list(top_pops.values())
+    plt.xlabel("State")
+    plt.ylabel("Populations")
+    plt.title("Top 5 states and their populations")
+    plt.bar(states, populations, color = 'red')
+
+    #Displays bar graph
+    plt.show()
+
+#Function to update a specific state's population value
+def update():
+    '''Fucntion to update a specific states population'''
+    #Loop to check user's input and insure they request a state in the list
+    while True:
+        user_update = input("What state do you wish to update?\n")
+        #Condition for bad input
+        if user_update.lower() not in state_info:
+            print("Not a valid state")
+
+        else:
+            break
+
+    #Loop to check second user input
+    while True:
+        try:
+            new_population = int(input("What is the new population?\n"))
+            #Condition for entering negative number
+            if new_population < 0:
+                print("Enter a positive number")
+            else:
+                break
+        #Condition for not entering a number
+        except ValueError:
+            print("Please enter a nuber")
+    #Loop to change the value of the population of the selected state
+    for name, stats in state_info.items():
+        #Changes the value
+        if user_update.lower() == name:
+            stats['Population'] = new_population
+    #Prints user's input
+    print((user_update), ("population changed to: "), (new_population))
+
+#Function to print menu
+def menu():
+    '''Menu'''
+    print('''\nWhat do you want to do?
+
+1. Display all U.S. States in Alphabetical including Capital, State Population, and Flower
+2. Search for a specific state
+3. Display bar graph of top 5 populated states
+4. Update state population
+5. Exit''')
+
+#Main function, prints greeting and loops menu
+def main():
+    '''Hello and welcome to Nothing is Real's State database!
+
+Here you can access the a dictionary compiled of each state's statistics
+including capital, population, and state flower'''
+
+
+    #Prints greeting from docstring
+    print(main.__doc__)
+
+    while True:
+
+    #Loop to ask user for menu selection and validate selection
+        while True:
+
+            try:
+                menu()
+                menu_choice = int(input("Enter your number selection below:\n"))
+                if (menu_choice < 1 or menu_choice > 6):
+                    print("Please enter a number 1-5")
+                else:
+                    break
+            except ValueError:
+                print("Please enter a number")
+
+        #Conditions for entering numbers 1-5
+        if menu_choice == 5:
+            break
+        if menu_choice == 1:
+            display()
+        if menu_choice == 2:
+            search()
+        if menu_choice == 3:
+            graph()
+        if menu_choice == 4:
+            update()
+
+#Calls main function
+main()
+
+#Exits program when main function is done
+    sys.exit("Thank you for using a Nothing is Real Product. Good Bye!")</pre>
+</p>
+<br>
+<br>
+
+</div>
+</body>
+</html>

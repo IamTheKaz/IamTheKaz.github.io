@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My first Java GUI</title>
+</head>
+<body style ='background-image: url("images/Code_background.jpg")'><!--Tells the html file to look for its stylesheet in the static folder-->
+<link rel="stylesheet" type="text/css" href="stylesheet.css">
+
+<div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="Code.html">Code Samples</a>
+    <a href="Web.html">Website Samples</a>
+</div>
+
+<div class="main">
+    <p><h1>This is the main function for a multifunction GUI written in Java</h1></p>
+    <pre>package MyFirstGUI;
+//Kassandra Ring ***** CMIS 242/6382 ***** 10/4/2022
+
+//Program displays three button GUI with options to convert miles, convert temperature, or exit
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+
+public class GUIConverter {
+
+	// generic handler that does same action for all converters but gets as parameter as constructor the correct converter
+	private static abstract class ConverterHandler implements ActionListener {
+
+		private JFrame window = null;
+		private Converter converter = null;
+		private String msg;
+
+		// setup frame to be used in JOptionPane
+		public ConverterHandler(JFrame frame, Converter con, String msg) {
+			window = frame;
+			this.converter = con;
+			this.msg = msg;
+		}
+
+		//What to do if the temperature button is clicked
+		public void tempPerformed(ActionEvent e) {
+
+			String input = (String)JOptionPane.showInputDialog(window, msg);
+
+			// check  input and set label
+			if ((input != null) && (input.length() > 0)) {
+
+				try {
+					// convert to number
+					double doubleInput = Double.parseDouble(input);
+					converter.setInput(doubleInput);
+
+					//Make an instance of convert from TemperatureConverter
+					TemperatureConverter Tc = new TemperatureConverter();
+					double result = Tc.convert(doubleInput);
+
+					// pop windows with converted value
+					String msg = input + " F equals " + result + " C";
+					JOptionPane.showMessageDialog(window, msg);
+
+				//what to do with bad input
+				} catch (NumberFormatException ex) {
+					System.out.println("value was not valid. Good Bye");
+					System.exit(0);
+				}
+			}
+		}
+		//What to do if the distance button is clicked
+		public void distPerformed(ActionEvent e) {
+
+			String input = (String)JOptionPane.showInputDialog(window, msg);
+
+			// check  input and set label
+			if ((input != null) && (input.length() > 0)) {
+
+				try {
+					// convert to number
+					double doubleInput = Double.parseDouble(input);
+					converter.setInput(doubleInput);
+
+					//create instance of convert from distanceconverter
+					DistanceConverter Dc = new DistanceConverter();
+					double result = Dc.convert(doubleInput);
+
+					// pop windows with converted value
+					String msg = input + " miles equals " + result + " Kilometers";
+					JOptionPane.showMessageDialog(window, msg);
+
+					//What to do with bad input
+				} catch (NumberFormatException ex) {
+					System.out.println("value was not valid. Good Bye");
+					System.exit(0);
+				}
+			}
+		}
+	}
+
+	//Setup for input box for temperature coonverter
+	private static class TemperatureHandler extends ConverterHandler {
+
+		private static TemperatureConverter tempconv = new TemperatureConverter();
+
+		// setup frame to be used in JOptionPane
+		public TemperatureHandler(JFrame frame) {
+			super(frame, tempconv, "Input fahrenheit temperature to convert");
+		}
+
+		public void actionPerformed(ActionEvent e) {
+			super.tempPerformed(e);
+		}
+
+
+	}
+
+	//Setup for input box for distance converter
+	private static class DistanceHandler extends ConverterHandler {
+
+		private static DistanceConverter distconv = new DistanceConverter();
+
+		// setup frame to be used in JOptionPane
+		public DistanceHandler(JFrame frame) {
+			super(frame, distconv, "Input miles distance to convert");
+		}
+
+		public void actionPerformed(ActionEvent e) {
+			super.distPerformed(e);
+		}
+
+
+	}
+
+	// exit event handler
+	private static class ExitHandler implements ActionListener {
+
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+	}
+
+	//Main to display buttons
+	public static void main(String[] args) {
+
+		GUIConverter g = new GUIConverter();
+
+		// create JButton instances
+		JButton distButton = new JButton("Distance Converter");
+		JButton tempButton = new JButton("Temperature Converter");
+		JButton exitButton = new JButton("Exit");
+
+		// create frame
+		JFrame window = new JFrame("Welcome to Converter");
+
+		// add buttons to the panel
+		JPanel content = new JPanel();
+		content.setLayout(new BorderLayout());
+
+		// Tell buttons where to look for function
+		TemperatureHandler tempListener = new TemperatureHandler(window);
+		tempButton.addActionListener(tempListener);
+		DistanceHandler distListener = new DistanceHandler(window);
+		distButton.addActionListener(distListener);
+		ExitHandler exitListener = new ExitHandler();
+		exitButton.addActionListener(exitListener);
+
+		// add buttons to panel
+		content.add(tempButton, BorderLayout.EAST);
+		content.add(exitButton, BorderLayout.SOUTH);
+		content.add(distButton, BorderLayout.CENTER);
+
+		// adds content we created above
+		window.setContentPane(content);
+
+		// setup size and location
+		window.setSize(450,200);	// sets size of the window
+		window.setLocation(300,400);  // sets x,y location where it should display
+		window.setVisible(true);	// makes it visible
+	}
+}
+</pre>
+</div>
+</body>
+</html>

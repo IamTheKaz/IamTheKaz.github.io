@@ -1,0 +1,66 @@
+<!--This page is simple a cut and paste of my code from the most recent version of the first code I ever wrote for UMGC-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>Code sample: Google Age Calculator</title>
+</head>
+<body style ='background-image: url("images/Code_background.jpg")'><!--Tells the html file to look for its stylesheet in the static folder-->
+<link rel="stylesheet" type="text/css" href="stylesheet.css">
+
+<div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="Code.html">Code Samples</a>
+    <a href="Web.html">Website Samples</a>
+</div>
+
+<div class="main">
+    <p>
+<h1>This is the code I wrote for a project in SDEV 300:</h1>
+    </p>
+<br>
+<br>
+<h2>I want to point out that I am particularly fond of this piece of code
+because it has evolved from the first bits of code I wrote for UMGC</h2>
+<br>
+<p><pre><!--Use of <pre> allows me to keep all of my tabs and newlines just as they are in the .py file-->
+  """  Kassandra Ring ******** 1/28/2023******* SDEV 300 """
+# Program calculates how much older than Google the user is.
+
+# importing date class from datetime
+from datetime import date
+
+#Welcome message and request for input
+print ("Welcome to Nothing is Real Google Age Difference Calculator")
+
+while True:
+    try:
+        birthyear = input("Please enter the year you were born: ")
+#Calculates age of user
+        date = date.today()
+        age = (date.year- int(birthyear))
+
+#Calculates age of Google
+        google_age = (date.year- 1998)
+
+#Establish variable for difference
+        difference = (int(age)-int(google_age))
+        break
+    except ValueError:
+        print("Please enter a number")
+
+#Prints difference between age of user and age of google.
+#If number is negative prints "younger" rather than older.
+
+if (age-google_age) < 0:
+    print (("In"), (date.year), ("you are"), (difference*-1), ("years younger than Google!"))
+
+else:
+    print (("In"), (date.year), ("you are"), (difference), ("years older than Google!"))
+</pre>
+</p>
+<br>
+<br>
+
+</div>
+</body>
+</html>
